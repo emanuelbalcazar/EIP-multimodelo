@@ -1,5 +1,11 @@
 # Introducción a bases de datos multimodelo
 
-Curso dictado durante la cuarta escuela de informática patagonica en Puerto Madryn.
 
-Autores: A.P.U Carlos Emanuel Balcazar y Henry Tong.
+[![Logo](./images/OrientdbLogo.png)]()
+
+
+Curso dictado durante la cuarta Escuela de Informática Patagonica en la UNPSJB sede Puerto Madryn.
+
+Autores:
+- A.P.U Carlos Emanuel Balcazar - [emanuelbalcazar13@gmail.com]()
+- Henry Valera Tong - [taksantong@gmail.com]()
