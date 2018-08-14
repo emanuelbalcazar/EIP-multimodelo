@@ -23,6 +23,9 @@ db.open()
     .then(() => executeUpperCase(text))
     .then(showQueryResult)
     .then(close)
+    .catch((err) => {
+        console.error('\nError:', err);
+    });
 
 /**
  * @returns OFunction class as object.
@@ -52,7 +55,7 @@ function createUpperCase(OFunction, functionName) {
  * @returns query results.
  */
 function executeUpperCase(text) {
-    return db.query(`SELECT toUpperCase("${text}") as text`)
+    return db.query('SELECT toUpperCase(:text) as result', { params: { text: text } });
 }
 
 /**
@@ -69,8 +72,5 @@ function close() {
     db.close().then(() => {
         console.log('\nConnection closed!');
         return true;
-    }).catch((err) => {
-        console.error('\nDisconnection error:', err);
-        return false;
     });
 }

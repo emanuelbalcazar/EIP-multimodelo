@@ -20,7 +20,10 @@ const query = "SELECT Version FROM DBInfo";
 db.open()
     .then(db => executeQuery(query))
     .then(showQueryResult)
-    .then(close);
+    .then(close)
+    .catch((err) => {
+        console.error('\nError:', err);
+    });
 
 /**
  * @param {String} query to execute.
