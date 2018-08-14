@@ -14,14 +14,38 @@ const db = new ODatabase({
     name: 'demodb'
 });
 
+const query = "SELECT Version FROM DBInfo";
+
+// execute the promises chain.
 db.open()
-    .then(() => {
-        // execute a simple query.
-        return db.query('SELECT Version FROM DBInfo');
-    })
-    .then((res) => {
-        console.log('\nQuery result:', res);
-        db.close().then(() => {
-            console.log('\nConnection closed!');
-        });
+    .then(db => executeQuery(query))
+    .then(showQueryResult)
+    .then(close);
+
+/**
+ * @param {String} query to execute.
+ * @returns query results.
+ */
+function executeQuery(query) {
+    return db.query(query);
+}
+
+/**
+ * @param {Array} results
+ */
+function showQueryResult(results) {
+    console.log('\nQuery results:', results);
+}
+
+/**
+ * Closes the connection to the database.
+ */
+function close() {
+    db.close().then(() => {
+        console.log('\nConnection closed!');
+        return true;
+    }).catch((err) => {
+        console.error('\nDisconnection error:', err);
+        return false;
     });
+}
