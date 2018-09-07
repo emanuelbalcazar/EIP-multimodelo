@@ -9,12 +9,11 @@ fs.readFile(filepath, (err, data) => {
     if (err)
         return console.error(err);
 
-    console.log('> Con Async:', data.toString());
+    console.log('1 Con Async:', data.toString());
 });
 
-console.log('Con lectura asincrona finalizada');
-
+console.log('2 Con lectura asincrona finalizada');
 
 var data = fs.readFileSync(filepath);
-console.log('> Con Sync:', data.toString());
-console.log('Con lectura sincrona finalizada');
+console.log('3 Con Sync:', data.toString());
+console.log('4 Con lectura sincrona finalizada');
