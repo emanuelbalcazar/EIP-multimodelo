@@ -1,7 +1,7 @@
 /**
  * @author Carlos Emanuel Balcazar
  */
-var fs = require("fs");
+const fs = require("fs");
 
 const filepath = __dirname + '/file.txt';
 
