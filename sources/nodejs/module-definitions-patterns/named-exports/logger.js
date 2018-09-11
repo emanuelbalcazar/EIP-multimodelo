@@ -1,4 +1,3 @@
-// Las funciones publicas se exportan utilizando 'exports.functionName' o 'module.exports.functionName'.
 exports.info = (message) => {
     log('info', message);
 };

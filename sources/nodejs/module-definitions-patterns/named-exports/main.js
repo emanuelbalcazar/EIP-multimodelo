@@ -1,4 +1,7 @@
-const logger = require('./logger');  // Importo el modulo cuyas funciones ya se encuentran publicas.
+/**
+ * Named export example.
+ */
+const logger = require('./logger');
 
 logger.info('imprimiendo mensaje de info');
 logger.error('imprimiendo mensaje de error');
