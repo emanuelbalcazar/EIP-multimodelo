@@ -9,13 +9,13 @@ const connection = require('../database/connection');
 // root route.
 router.get('/', (req, res) => {
     let info = 'Aplicación inicializada!';
-    defaultCallback(res, false, info);
+    res.send(info);
 });
 
 // get server information.
 router.get('/info', (req, res) => {
     let info = { name: 'EIP server example', date: '2018' };
-    defaultCallback(res, false, info);
+    res.send(info);
 });
 
 router.get('/profesores', (req, res) => {
@@ -80,13 +80,6 @@ function close(results) {
     }).catch((err) => {
         return err;
     });
-}
-
-function defaultCallback(res, error, response) {
-    if (error)
-        return res.status(500).send(error);
-
-    return res.send(response);
 }
 
 module.exports = router;

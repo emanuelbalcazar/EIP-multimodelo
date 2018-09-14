@@ -1,3 +1,6 @@
+/**
+ * Database connection module.
+ */
 const ODatabase = require('orientjs').ODatabase;
 
 // initialize a database instance
