@@ -1,18 +1,20 @@
 {
-    "name": "orientjs-examples",
-    "version": "1.0.0",
-    "description": "examples of orientjs",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/emanuelbalcazar/EIP-multimodelo.git"
-    },
-    "author": "Carlos Emanuel Balcazar",
-    "license": "ISC",
-    "dependencies": {
-        "orientjs": "^2.2.10"
-    }
+  "name": "orientjs-examples",
+  "version": "1.0.0",
+  "description": "examples of orientjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emanuelbalcazar/EIP-multimodelo.git"
+  },
+  "author": "Carlos Emanuel Balcazar",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "orientjs": "^2.2.10"
+  }
 }
