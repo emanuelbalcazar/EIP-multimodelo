@@ -57,6 +57,55 @@ router.post('/actualizarProfesor', (req, res) => {
         });
 });
 
+router.get('/grafo', (req, res) => {
+    let nodos = [];
+    let arcos = [];
+
+    ejecutar().then(resultados => {
+        console.log(resultados)
+    });
+});
+
+async function ejecutar() {
+    let profesores = await obtenerProfesores();
+    let alumnos = await obtenerAlumnos();
+    let cursos = await obtenerCursos();
+    let dictados = await obtenerDictados();
+    let matriculas = await obtenerMatriculas();
+
+    return [profesores, alumnos, cursos, dictados, matriculas];
+}
+
+async function obtenerProfesores() {
+    let profesores = 'SELECT FROM Profesor';
+    let resultado = await executeQuery(profesores);
+    return resultado;
+}
+
+async function obtenerAlumnos() {
+    let alumnos = 'SELECT FROM Alumno';
+    let resultado = await executeQuery(alumnos);
+    return resultado;
+}
+
+async function obtenerCursos() {
+    let cursos = 'SELECT FROM Curso';
+    let resultado = await executeQuery(cursos).then(registros => { return registros; });;
+    return resultado;
+}
+
+async function obtenerDictados() {
+    let dicta = 'SELECT FROM Dicta';
+    let resultado = await executeQuery(dicta).then(registros => { return registros; });;
+    return resultado;
+}
+
+async function obtenerMatriculas() {
+    let matriculadoEn = 'SELECT FROM matriculadoEn';
+    let resultado = await executeQuery(matriculadoEn).then(registros => { return registros; });;
+    return resultado;
+}
+
 /**
  * Open, execute and close connection.
  * @param {String} query to execute.
