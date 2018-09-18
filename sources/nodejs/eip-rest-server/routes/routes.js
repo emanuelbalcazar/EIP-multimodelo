@@ -157,4 +157,3 @@ function close(results) {
 }
 
 module.exports = router;
-
