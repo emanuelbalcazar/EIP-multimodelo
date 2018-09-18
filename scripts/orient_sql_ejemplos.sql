@@ -136,5 +136,21 @@ http://localhost:2480/document/demodb
     "Name": "Argentina"
 }
 
+-- GET - obtenemos el pais
+-- ejemplo: http://localhost:2480/document/demodb/33:0
+http://localhost:2480/document/demodb/<id>
+
+
+-- PUT - actualizar el pais
+http://localhost:2480/document/demodb/<id>
+
+{
+  "@class": "Countries",
+    "Name": "Argentinaaaaaa"
+}
+
+-- DELETE - elimino el pais
+http://localhost:2480/document/demodb/<id>
+
 -- Podemos obtener información sobre una clase en particular.
 http://localhost:2480/class/demodb/Services
