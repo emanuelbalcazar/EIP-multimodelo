@@ -108,6 +108,30 @@ try {
 
 -- Recuerden poner en la pestaña "Authorization" -> "Basic Auth" -> su usuario y contraseña en Postman.
 
+-- GET - llamamos a las funciones creadas
+http://localhost:2480/function/demodb/toUpperCase/<name>
+
+http://localhost:2480/function/demodb/mayor/3/5
+
+http://localhost:2480/function/demodb/concatenar/3/5
+
+http://localhost:2480/function/demodb/hosteles
+
+
+-- POST - creamos una funcion desde una peticion HTTP
+http://localhost:2480/document/demodb
+
+{
+	"@class": "OFunction",
+	"idempotent": true,
+	"code": "return text.toLowerCase();",
+    "name": "toLowerCase",
+    "language": "Javascript",
+    "parameters": [
+        "text"
+    ]
+}
+
 -- GET - traemos la info de la db
 http://localhost:2480/query/demodb/sql/select from DBInfo
 
