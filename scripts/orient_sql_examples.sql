@@ -24,7 +24,7 @@ SELECT FROM Countries SKIP 20 LIMIT 20
 SELECT FROM Countries  SKIP 40 LIMIT 20
 
 -- selecciono y cuento los tipos de atracciones
-SELECT Type, count(Type) FROM Attractions GROUP BY Type
+SELECT Type, COUNT(Type) FROM Attractions GROUP BY Type
 
 -- año de nacimiento de los perfiles, y cuantos nacieron el mismo año
 SELECT  COUNT (*) as NumberOfProfiles, 
@@ -32,6 +32,7 @@ Birthday.format('yyyy') AS YearOfBirth
 FROM Profiles
 GROUP BY YearOfBirth 
 ORDER BY NumberOfProfiles DESC
+
 
 -- el clasico insert de sql
 INSERT INTO Locations(Name, Type) VALUES ('Madryn', 'hostel')
@@ -51,10 +52,25 @@ UPDATE Locations MERGE {Type: 'albergue'} WHERE Name='Madryn'
 -- delete, baia baia hay un vertex por aca...
 DELETE VERTEX FROM Locations WHERE Name='Madryn' UNSAFE
 
+
 -- que hacen?
 SELECT FROM Profiles WHERE Email LIKE '%.com'
 
 SELECT FROM Profiles WHERE Email.right(3) = 'org'
 
 SELECT FROM Profiles WHERE ANY() LIKE '%vogolo%'
+
+
+-- convierto a mayusculas los nombres obtenidos
+SELECT Name.toUppercase() FROM Profiles
+
+-- creamos la funcion sumar con dos parametros
+CREATE FUNCTION concatenar "return a.concat(b)" PARAMETERS [a,b] LANGUAGE JAVASCRIPT
+
+SELECT concatenar('hola ', 3) as resultado
+
+-- creamos la funcion que devuelve todos los hosteles
+CREATE FUNCTION hosteles "SELECT Name, Type FROM Services WHERE Type = 'hostel'" LANGUAGE SQL
+
+SELECT hosteles() as hosteles
 
