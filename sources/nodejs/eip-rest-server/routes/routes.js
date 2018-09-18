@@ -62,7 +62,27 @@ router.get('/grafo', (req, res) => {
     let arcos = [];
 
     ejecutar().then(resultados => {
-        console.log(resultados)
+        resultados[0].forEach(element => {
+            nodos.push({ id: element['@rid'], label: element['nombre'] });
+        });
+
+        resultados[1].forEach(element => {
+            nodos.push({ id: element['@rid'], label: element['nombre'] });
+        });
+
+        resultados[2].forEach(element => {
+            nodos.push({ id: element['@rid'], label: element['nombre'] });
+        });
+
+        resultados[3].forEach(element => {
+            arcos.push({ id: element['@rid'], label: element['nombre'], from: element['out'], to: element['in'] });
+        });
+
+        resultados[4].forEach(element => {
+            arcos.push({ id: element['@rid'], label: element['nombre'], from: element['out'], to: element['in'] });
+        });
+
+        res.send({ nodes: nodos, edges: arcos });
     });
 });
 
@@ -90,19 +110,19 @@ async function obtenerAlumnos() {
 
 async function obtenerCursos() {
     let cursos = 'SELECT FROM Curso';
-    let resultado = await executeQuery(cursos).then(registros => { return registros; });;
+    let resultado = await executeQuery(cursos);
     return resultado;
 }
 
 async function obtenerDictados() {
     let dicta = 'SELECT FROM Dicta';
-    let resultado = await executeQuery(dicta).then(registros => { return registros; });;
+    let resultado = await executeQuery(dicta);
     return resultado;
 }
 
 async function obtenerMatriculas() {
     let matriculadoEn = 'SELECT FROM matriculadoEn';
-    let resultado = await executeQuery(matriculadoEn).then(registros => { return registros; });;
+    let resultado = await executeQuery(matriculadoEn);
     return resultado;
 }
 
