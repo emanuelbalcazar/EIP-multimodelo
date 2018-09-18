@@ -62,24 +62,29 @@ router.get('/grafo', (req, res) => {
     let arcos = [];
 
     ejecutar().then(resultados => {
+        // profesores
         resultados[0].forEach(element => {
             nodos.push({ id: element['@rid'], label: element['nombre'] });
         });
 
+        // alumnos
         resultados[1].forEach(element => {
             nodos.push({ id: element['@rid'], label: element['nombre'] });
         });
 
+        // cursos
         resultados[2].forEach(element => {
             nodos.push({ id: element['@rid'], label: element['nombre'] });
         });
 
+        // dictados
         resultados[3].forEach(element => {
-            arcos.push({ id: element['@rid'], label: element['nombre'], from: element['out'], to: element['in'] });
+            arcos.push({ id: element['@rid'], label: element['@class'], from: element['out'], to: element['in'] });
         });
 
+        // matriculas
         resultados[4].forEach(element => {
-            arcos.push({ id: element['@rid'], label: element['nombre'], from: element['out'], to: element['in'] });
+            arcos.push({ id: element['@rid'], label: element['@class'], from: element['out'], to: element['in'] });
         });
 
         res.send({ nodes: nodos, edges: arcos });
