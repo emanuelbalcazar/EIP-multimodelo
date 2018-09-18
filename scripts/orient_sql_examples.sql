@@ -1,3 +1,5 @@
+/* PRIMEROS EJEMPLOS */
+
 -- traigo los usuarios
 SELECT FROM OUser
 
@@ -33,6 +35,7 @@ FROM Profiles
 GROUP BY YearOfBirth 
 ORDER BY NumberOfProfiles DESC
 
+/* OPERACIONES ABM */
 
 -- el clasico insert de sql
 INSERT INTO Locations(Name, Type) VALUES ('Madryn', 'hostel')
@@ -64,6 +67,8 @@ SELECT FROM Profiles WHERE ANY() LIKE '%vogolo%'
 -- convierto a mayusculas los nombres obtenidos
 SELECT Name.toUppercase() FROM Profiles
 
+/* FUNCIONES */
+
 -- creamos la funcion sumar con dos parametros
 CREATE FUNCTION concatenar "return a.concat(b)" PARAMETERS [a,b] LANGUAGE JAVASCRIPT
 
@@ -72,5 +77,64 @@ SELECT concatenar('hola ', 3) as resultado
 -- creamos la funcion que devuelve todos los hosteles
 CREATE FUNCTION hosteles "SELECT Name, Type FROM Services WHERE Type = 'hostel'" LANGUAGE SQL
 
+CREATE FUNCTION hosteles "SELECT Name, Type FROM Services WHERE Type = 'hostel'" IDEMPOTENT TRUE LANGUAGE SQL 
+
 SELECT hosteles() as hosteles
 
+-- accedemos a la base de datos desde una funcion javascript
+
+var username = username;
+var db = orient.getDatabase();
+var user = db.query("select from OUser where name = ?", username);
+var roles = db.query("select from ORole");
+
+if (user && user.length > 0)
+	return response.send(500, "El usuario ya existe", "text/plain", "Error: el usuario ya existe con el nombre: " + username);
+
+db.begin();
+try {
+	var result = db.save({ "@class" : "OUser", name : username, password : "secret", status: "ACTIVE", roles: roles });
+    db.commit();
+    return result;
+} catch (err) {
+   	db.rollback();
+	return response.send(500, "Error al crear un nuevo usuario", "text/plain", err.toString());
+}
+
+-- crear una función que sume dos números (acá no esta escrita)
+-- crear una función que devuelva el mayor entre dos números (se puede hacer en una línea!) (ayuda: operador ternario)
+
+/* PETICIONES HTTP */
+
+-- Recuerden poner en la pestaña "Authorization" -> "Basic Auth" -> su usuario y contraseña en Postman.
+
+-- GET - traemos la info de la db
+http://localhost:2480/query/demodb/sql/select from DBInfo
+
+
+-- POST - ejecutamos una consulta sql
+http://localhost:2480/command/demodb/sql
+
+-- trae todos los servicios de la base
+{
+	"command": "SELECT Name, Type FROM Services"
+}
+
+-- trae todos los servicios de la base que cumplan con la condicion
+{
+	"command": "SELECT Name, Type FROM Services WHERE Type=:type",
+	"parameters": {
+		"type": "hostel"
+	}
+}
+
+-- POST - agregamos un nuevo pais
+http://localhost:2480/document/demodb
+
+{
+	"@class": "Countries",
+    "Name": "Argentina"
+}
+
+-- Podemos obtener información sobre una clase en particular.
+http://localhost:2480/class/demodb/Services
