@@ -69,7 +69,7 @@ SELECT Name.toUppercase() FROM Profiles
 
 /* FUNCIONES */
 
--- creamos la funcion sumar con dos parametros
+-- creamos la funcion para concatenar dos parametros
 CREATE FUNCTION concatenar "return a.concat(b)" PARAMETERS [a,b] LANGUAGE JAVASCRIPT
 
 SELECT concatenar('hola ', 3) as resultado
