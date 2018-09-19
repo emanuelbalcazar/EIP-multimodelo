@@ -8,8 +8,7 @@ const connection = require('../database/connection');
 
 // root route.
 router.get('/', (req, res) => {
-    let info = 'Aplicación inicializada!';
-    res.send(info);
+    res.render('index.html');
 });
 
 // get server information.

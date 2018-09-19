@@ -1,4 +1,5 @@
 // server.js - configure and start the application.
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -8,6 +9,9 @@ const app = express();
 // configure all environments.
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// static files.
+app.use(express.static(path.join(__dirname, 'public')));
 
 // declare all routes.
 const routes = require('./routes/routes');
