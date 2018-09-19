@@ -255,3 +255,56 @@ var greet = function (person, greeting) {
 
 var greeting = greet('Rebecca', 'Hello');
 greeting();  // se muestra en la consola 'Hello, Rebecca'
+
+
+
+/**
+ * FUNCIONES ANONIMAS (O LAMBDAS)
+ * Son equivalentes a las funciones comunes solo que no se declaran con la palabra reservada "function".
+ * Se suelen utilizar para funciones que se declaran en el "momento".
+ */
+
+var div;
+
+div = function (a, b) {
+    return a / b;
+}
+
+div = (a, b) => {
+    return a / b;
+}
+
+
+
+/**
+ * CALLBACK
+ * O tambien llamadas funciones de retrollamada, se pasan como parametro a otra funcion que luego la ejecutará
+ * cuando termine su ejecución.
+ * */
+
+// declaro la funcion que se va a ejecutar cuando la multiplicacion se termine de realizar.
+// los callback siempre siguen el patron de error - resultado
+var print = function (error, result) {
+    console.log('[print] - Despues de multiplicar:', result);
+}
+
+// defino la funcion que quiero ejecutar, ahora ademas de los operandos recibe una funcion de retorno.
+var mult = function (a, b, callback) {
+    var result = a * b;
+    callback(false, result);
+}
+
+// llamo a la funcion multiplicar y le paso la funcion de retorno.
+mult(2, 5, print);
+
+// o tambien puedo...
+mult(2, 6, function (error, result) {
+    console.log('[mult] - Despues de multiplicar:', result);
+});
+
+// y ahora usando lo mas nuevo...
+mult(2, 7, (error, result) => {
+    console.log('[mult] - Despues de multiplicar:', result);
+});
+
+// ulala señor frances, funciones anonimas, incorporadas recientemente en javascript e incluso en java.
