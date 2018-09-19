@@ -302,9 +302,7 @@ mult(2, 6, function (error, result) {
     console.log('[mult] - Despues de multiplicar:', result);
 });
 
-// y ahora usando lo mas nuevo...
+// ulala señor frances, funciones anonimas, incorporadas recientemente en javascript e incluso en java.
 mult(2, 7, (error, result) => {
     console.log('[mult] - Despues de multiplicar:', result);
 });
-
-// ulala señor frances, funciones anonimas, incorporadas recientemente en javascript e incluso en java.
