@@ -16,7 +16,6 @@ const t = 1234; // declaracion de una constante, su valor no se puede modificar.
 
 // declaracion de cadenas.
 var hello = 'hello';
-var world = ' world';
 
 // imprime el valor de la variable "hello"
 console.log(hello);
@@ -274,7 +273,7 @@ div = (a, b) => {
     return a / b;
 }
 
-
+console.log(div(10, 2));
 
 /**
  * CALLBACK
